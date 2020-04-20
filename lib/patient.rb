@@ -1,4 +1,4 @@
-class Genre
+class Patient
   attr_accessor :name
 
   @@all = []
@@ -12,15 +12,19 @@ class Genre
     @@all
   end
 
-  def songs
-    Song.all.select do |song|
-      song.genre == self
+  def new_appointment(date,doctor)
+    appointment.new(date,self,doctor)
+  end
+
+  def appointments
+    Appointment.all.select do |appointment|
+      appointment.patient == self
     end
   end
 
-  def artists
-    songs.map do |song|
-      song.artist
+  def doctors
+    appointments.map do |appointment|
+      appointment.doctors
     end
   end
 
